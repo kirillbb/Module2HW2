@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace hw7
+namespace Module2HW2
 {
     class Basket
     {

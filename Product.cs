@@ -4,11 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace hw7
+namespace Module2HW2
 {
     class Product
     {
+        public int Index { get; }
         public string Name { get; }
-        public string Price { get; }
+        public int Price { get; }
+
+        public Product(int index, string name, int price)
+        {
+            Index = index;
+            Name = name;
+            Price = price;
+
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace hw7
+namespace Module2HW2
 {
     class Program
     {

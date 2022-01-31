@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Module2HW2
 {
-    class Product
+    public class Product
     {
         public int Index { get; }
         public string Name { get; }

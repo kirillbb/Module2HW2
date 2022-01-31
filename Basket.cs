@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Module2HW2
 {
-    class Basket
+    public static class Basket
     {
+
+        private static List<Product> basketList = new();
+
+        internal static List<Product> BasketList { get => basketList; set => basketList = value; }
+
     }
 }

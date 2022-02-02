@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Module2HW2
 {
-    public static class Shop
+    public static partial class Shop
     {
         public static void Run()
+        {
+            ShowProductList();
+
+            AddProductsToBasket();
+            
+            PlaceAnOrder();
+        }
+        private static void ShowProductList()
         {
             Console.WriteLine("Product list:\n");
 
@@ -13,59 +22,73 @@ namespace Module2HW2
             {
                 Console.WriteLine($"{product.Index} ___ {product.Name} - {product.Price}$");
             }
-
-            AddProductsToBasket();
-
-            Console.WriteLine($"In your shopping basket products for {Calculate.TotalPrice(Basket.BasketList)}$");
         }
 
         private static void AddProductsToBasket()
         {
-            Console.WriteLine("How many items would you like to purchase?");
+            Console.WriteLine("\nHow many items would you like to purchase?");
             var input = Console.ReadLine();
+            int count;
 
-            if (int.TryParse(input, out int count))
-            {
-                Console.WriteLine($"Adding {count} items to shopping basket...");
-            }
-            else
+            while (!int.TryParse(input, out count))
             {
                 Console.WriteLine("Incorrect input, use digits, try again!");
+                input = Console.ReadLine();
             }
+
+            Console.Write($"\nAdding {count} random items to shopping basket");
+
+            int n = 0;
+            while (n < 6)
+            {
+                Console.Write(" .");
+                Thread.Sleep(200);
+                n++;
+            }
+            Console.Write("\n");
+
 
             Random random = new();
 
             for (int i = 0; i < count; i++)
             {
-                int item = random.Next(0, 18);
+                int item = random.Next(0, products.Count);
                 Basket.BasketList.Add(products[item]);
                 Console.WriteLine($"{products[item].Index} ___ " +
                     $"{products[item].Name} - " +
                     $"{products[item].Price}$");
+
+                Thread.Sleep(500);
             }
 
+            Calculate.TotalPrice(Basket.BasketList);
+        }
+        private static void PlaceAnOrder()
+        {
+            Console.WriteLine("Press Enter-button to place an order!");
+            Console.ReadLine();
+
+            Console.Clear();
+
+            Order order = new();
+
+            Console.WriteLine($"Congratulations, your order #{order.OrderNumber} has been placed!");
+            Console.WriteLine("Your order has:");
+
+            for (int i = 0; i < Basket.BasketList.Count; i++)
+            {
+                Order.OrderList.Add(Basket.BasketList[i]);
+                Console.WriteLine($"{Order.OrderList[i].Index} ___ " +
+                    $"{Order.OrderList[i].Name} - " +
+                    $"{Order.OrderList[i].Price}$");
+
+                Thread.Sleep(500);
+
+            }
+
+            Calculate.TotalPrice(Order.OrderList);
         }
 
-        private static readonly List<Product> products = new()
-        {
-            new(101,"Tomato", 12),
-            new(102, "Pineapple", 45),
-            new(103, "Carrot", 5),
-            new(104, "Pepsi", 7),
-            new(105, "Snickers", 5),
-            new(106, "Juice", 20),
-            new(107, "Bread", 8),
-            new(108, "Fanta", 8),
-            new(109, "7up", 7),
-            new(110, "Marlboro", 25),
-            new(111, "Beer", 10),
-            new(112, "Aspirine", 7),
-            new(113, "IceCream", 4),
-            new(114, "JackDaniels", 99),
-            new(115, "Heets", 27),
-            new(116, "Meat", 30),
-            new(117, "Butter", 15),
-            new(118, "Sauce", 12)
-        };
+       
     }
 }

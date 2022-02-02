@@ -8,7 +8,7 @@ namespace Module2HW2
 {
     public static class Calculate
     {
-        public static int TotalPrice(List<Product> products)
+        public static void TotalPrice(List<Product> products)
         {
             int totalPrice = 0;
 
@@ -17,7 +17,7 @@ namespace Module2HW2
                 totalPrice += item.Price;
             }
 
-           return totalPrice;
+            Console.WriteLine($"Total prise: {totalPrice}$");
         }
     }
 }

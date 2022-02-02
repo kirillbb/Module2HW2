@@ -8,10 +8,8 @@ namespace Module2HW2
 {
     public static class Basket
     {
-
         private static List<Product> basketList = new();
 
         internal static List<Product> BasketList { get => basketList; set => basketList = value; }
-
     }
 }

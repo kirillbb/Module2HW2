@@ -4,21 +4,21 @@ using System.Threading;
 
 namespace Module2HW2
 {
-    public static partial class Shop
+    public static partial class ProductsList
     {
         public static void Run()
         {
             ShowProductList();
 
             AddProductsToBasket();
-            
+
             PlaceAnOrder();
         }
+
         private static void ShowProductList()
         {
             Console.WriteLine("Product list:\n");
-
-            foreach (var product in products)
+            foreach (var product in Products)
             {
                 Console.WriteLine($"{product.Index} ___ {product.Name} - {product.Price}$");
             }
@@ -45,24 +45,25 @@ namespace Module2HW2
                 Thread.Sleep(200);
                 n++;
             }
+
             Console.Write("\n");
 
-
-            Random random = new();
+            Random random = new ();
 
             for (int i = 0; i < count; i++)
             {
-                int item = random.Next(0, products.Count);
-                Basket.BasketList.Add(products[item]);
-                Console.WriteLine($"{products[item].Index} ___ " +
-                    $"{products[item].Name} - " +
-                    $"{products[item].Price}$");
+                int item = random.Next(0, Products.Count);
+                Basket.BasketList.Add(Products[item]);
+                Console.WriteLine($"{Products[item].Index} ___ " +
+                    $"{Products[item].Name} - " +
+                    $"{Products[item].Price}$");
 
                 Thread.Sleep(500);
             }
 
             Calculate.TotalPrice(Basket.BasketList);
         }
+
         private static void PlaceAnOrder()
         {
             Console.WriteLine("Press Enter-button to place an order!");
@@ -70,7 +71,7 @@ namespace Module2HW2
 
             Console.Clear();
 
-            Order order = new();
+            Order order = new ();
 
             Console.WriteLine($"Congratulations, your order #{order.OrderNumber} has been placed!");
             Console.WriteLine("Your order has:");
@@ -83,12 +84,9 @@ namespace Module2HW2
                     $"{Order.OrderList[i].Price}$");
 
                 Thread.Sleep(500);
-
             }
 
             Calculate.TotalPrice(Order.OrderList);
         }
-
-       
     }
 }

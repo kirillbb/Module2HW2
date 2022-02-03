@@ -60,8 +60,6 @@ namespace Module2HW2
 
                 Thread.Sleep(500);
             }
-
-            Calculate.TotalPrice(Basket.BasketList);
         }
 
         private static void PlaceAnOrder()
@@ -86,7 +84,7 @@ namespace Module2HW2
                 Thread.Sleep(500);
             }
 
-            Calculate.TotalPrice(Order.OrderList);
+            Order.TotalPrice(Order.OrderList);
         }
     }
 }

@@ -20,5 +20,16 @@ namespace Module2HW2
         public int OrderNumber { get; private set; }
         public bool OrderStatus { get; private set; }
         internal static List<Product> OrderList { get => orderList; set => orderList = value; }
+        public static void TotalPrice(List<Product> products)
+        {
+            int totalPrice = 0;
+
+            foreach (var item in products)
+            {
+                totalPrice += item.Price;
+            }
+
+            Console.WriteLine($"Total prise: {totalPrice}$");
+        }
     }
 }
